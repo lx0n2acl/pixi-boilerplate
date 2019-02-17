@@ -4,7 +4,7 @@
   "description": "simple game",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server",
+    "start": "webpack-dev-server --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "David Pukalski",
@@ -17,8 +17,10 @@
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin-advanced": "^2.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "webpack": "^4.29.4",

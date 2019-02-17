@@ -1,47 +1,25 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin-advanced');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
+	mode: 'development',
 	context: path.resolve(__dirname, 'src'),
-	entry: [ './scripts/app.js', './styles/app.scss' ],
-	output: {
-		path: path.resolve(__dirname, 'dist'),
-		filename: 'app.bundle.js',
-		publicPath: ''
+	entry: {
+		app: './scripts/app.js',
 	},
+	devtool: 'inline-source-map',
 	devServer: {
-		contentBase: path.resolve(__dirname, 'src')
-	},
-	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				exclude: /node_modules/,
-				use: ExtractTextPlugin.extract({
-					use: 'css-loader?importLoaders=1'
-				})
-			},
-            {
-                test: /\.(sass|scss)$/,
-                exclude: /node_modules/,
-                use: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
-            },
-		]
+		contentBase: './dist'
 	},
 	plugins: [
-		new ExtractTextPlugin({
-			filename: 'app.bundle.css',
-			allChunks: true
-        }),
-        new CopyWebpackPlugin([
-            {
-              from: './assets/**/**',
-              flatten: true,
-            },
-            {
-              from: 'index.html'
-            },
-          ]),
-	]
+		new CleanWebpackPlugin(['dist']),
+		new HtmlWebpackPlugin({
+			template: './index.html'
+		})
+	],
+	output: {
+		filename: '[name].bundle.js',
+		path: path.resolve(__dirname, 'dist')
+	}
 };
