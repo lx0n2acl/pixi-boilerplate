@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "css-loader": "^2.1.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pixi.js": "^4.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
